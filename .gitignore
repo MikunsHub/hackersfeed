@@ -1,0 +1,3 @@
+node_modules
+backend/news/migrations
+__pycache__

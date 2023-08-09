@@ -1,3 +1,6 @@
 node_modules
 backend/news/migrations
 __pycache__
+settings.ini
+
+backend/celerybeat-schedule.db

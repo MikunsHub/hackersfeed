@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const SideBar = () => {
   return (
-    <div>
+    <div className="w-[260px] h-full">
       <div className="logo p-5">
         <Image
           width={50}

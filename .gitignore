@@ -1,6 +1,12 @@
 node_modules
 backend/news/migrations
+backend/accounts/migrations
 __pycache__
 settings.ini
 
 backend/celerybeat-schedule.db
+backend/dump.rdb
+backend/.DS_Store
+frontent/.DS_Store
+
+

@@ -3,12 +3,12 @@ import Sidebar from "../components/SideBar";
 
 export const Layout = ({ children }) => {
   return (
-    <div className="md:grid flex md:grid-cols-12 p-3">
-      <div className="col-span-2 ">
+    <div className=" gap-0 flex h-full">
+      <div className="sticky h-full  top-0">
         {" "}
         <Sidebar />{" "}
       </div>
-      <div className="col-span-10">{children}</div>
+      <div className="mt-5">{children}</div>
     </div>
   );
 };

@@ -1,4 +1,5 @@
 from rest_framework import serializers
+
 from .models import NewsItem, Comment
 
 
@@ -8,7 +9,7 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 class NewsItemSerializer(serializers.ModelSerializer):
-    comments = serializers.SerializerMethodField()
+    comments = serializers.SerializerMethodField(required=False)
 
     class Meta:
         model = NewsItem
@@ -29,3 +30,4 @@ class NewsItemSerializer(serializers.ModelSerializer):
                 serialized_comment["child_comments"] = serialized_child_comments
             serialized_comments.append(serialized_comment)
         return serialized_comments
+    

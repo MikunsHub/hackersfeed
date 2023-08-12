@@ -33,18 +33,11 @@ const Article = ({ params }) => {
 
   return (
     <Layout>
-      <div className="grid grid-cols-12 min-h-screen">
-        <section className="flex flex-col gap-5 col-span-8">
-          {/* <div className=" grid grid-cols-12 gap-2">
-            <div className="col-span-9 ">
-              <HeadLine />
-            </div>
-            <div className="col-span-3 ">
-              <HackersFeedHottest />
-            </div>
-          </div> */}
+      <div className="flex gap-2 p-3">
+        <section className=" gap-5 w-full  md:w-[70%]">
+          
 
-          <div className="my-9">
+          <div className="my-9  ">
             {article ? (
               <DetailView article={article} /> // Pass the fetched article as a prop
             ) : (
@@ -52,8 +45,10 @@ const Article = ({ params }) => {
             )}
           </div>
         </section>
-        {/* third col */}
-        <div className="col-span-4"></div>
+
+        <div className="h-96 sticky top-0 hidden md:flex w-[30%]">
+        <HackersFeedHottest />
+        </div>
       </div>
     </Layout>
   );

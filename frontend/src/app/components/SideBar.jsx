@@ -8,6 +8,7 @@ const SideBar = ({ latestNews }) => {
   const router = useRouter();
   const [showSearchInput, setShowSearchInput] = useState(false);
   const [searchText, setSearchText] = useState("");
+  
 
   const handleSearchClick = () => {
     setShowSearchInput(true);
@@ -38,9 +39,10 @@ const SideBar = ({ latestNews }) => {
   console.log(latestNews);
   // console.log(latestNews[0].text)
   return (
-    <div className="w-[260px] h-full">
+    <div>
+    <div className="md:w-full pr-20 w-full h-full">
       {/* {latestNews[0]} */}
-      <div className="logo p-5">
+      <div className="logo p-5 hidden md:flex">
         <a href="/" onClick={handleLogoClick}>
           <Image
             width={50}
@@ -53,7 +55,7 @@ const SideBar = ({ latestNews }) => {
       </div>
 
       <div className="flex justify-center items-center w-full ">
-        <div className="w-[80%] mt-3 flex flex-col gap-3 font-extralight text-gray-400 text-lg">
+        <div className="ml-3 w-full md:w-[80%] mt-3 flex flex-col gap-3 font-extralight text-gray-400 text-lg">
           <div>
             <div className="login-btn">
               <button>Login</button>
@@ -90,14 +92,14 @@ const SideBar = ({ latestNews }) => {
               )}
             </div>
           </div>
-          <div className="pt-5 flex flex-col gap-3 ">
+          <div className="mt-3   w-full flex flex-col gap-3 ">
             <div className="text-left">
               <button onClick={() => handleNavigation("/")}>Latest</button>
             </div>
-            <div className="text-left">
+            <div className="text-left w-full">
               <button onClick={() => handleNavigation("hackersfeed")}>Hackers Feed</button>
             </div>
-            <div className="text-left">
+            <div className="text-left w-full">
               <button onClick={() => handleNavigation("jobs")}>Job Postings</button>
             </div>
             <div className="text-left">
@@ -106,6 +108,7 @@ const SideBar = ({ latestNews }) => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

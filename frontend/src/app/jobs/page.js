@@ -7,13 +7,13 @@ import axios from "axios";
 import { Layout } from "../components/Layout";
 import Link from "next/link";
 import Latest from "../components/Latest";
-import { generateRandomBy } from "../utilities/helpers"; 
+import Modal from "../components/Modal"
+import { generateRandomBy } from "../utilities/helpers";
 
-const JobsPage = () => {
+const LandingPage = () => {
   const [latestNews, setLatestNews] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [newStoryText, setNewStoryText] = useState(""); // State for new story text
-  const [newStoryTitle, setNewStoryTitle] = useState(""); // State for new story title
+  
   const [isLoading, setIsLoading] = useState(false);
 
   const loadMoreNews = () => {
@@ -78,16 +78,22 @@ const JobsPage = () => {
 
   return (
     <Layout latestNews={latestNews}>
-      <div className="grid grid-cols-12 gap-5 min-h-screen">
-        <section className="flex flex-col gap-5 col-span-8">
-          <div className=" grid grid-cols-12 gap-2">
+      <div className="grid md:grid-cols-12 gap-5 min-h-screen p-3">
+        <section className="flex flex-col gap-5 col-span-9">
+          <div className=" flex flex-col gap-3 md:grid md:grid-cols-12 md:gap-2">
             <div className="col-span-9 ">
               <HeadLine />
             </div>
+            <div className=" md:hidden mx-3 flex justify-center items-center">
+          <Modal/>
+        </div>
+
             <div className="col-span-3 ">
               <HackersFeedHottest />
             </div>
           </div>
+
+         
 
           <div className="my-9">
             <Latest latestNews={latestNews} />
@@ -102,37 +108,12 @@ const JobsPage = () => {
           </div>
         </section>
         {/* third col */}
-        <div className="col-span-4 mx-3">
-          <form className="flex flex-col space-y-4" onSubmit={handlePostSubmit}>
-            <input
-              type="text"
-              placeholder="Title"
-              className="block w-full p-2 border rounded"
-              value={newStoryTitle}
-              onChange={(e) => setNewStoryTitle(e.target.value)}
-            />
-            <textarea
-              placeholder="What's happening?"
-              className="block w-full p-2 border rounded"
-              value={newStoryText}
-              onChange={(e) => setNewStoryText(e.target.value)}
-            />
-            <button
-              type="submit"
-              className={`ml-auto bg-orange-500 ${
-                isLoading
-                  ? "opacity-50 cursor-not-allowed"
-                  : "hover:bg-green-500"
-              } text-white py-2 px-4 rounded`}
-              disabled={isLoading}
-            >
-              {isLoading ? "Posting..." : "Post"}
-            </button>
-          </form>
+        <div className=" hidden md:flex col-span-3 mx-3">
+          <Modal/>
         </div>
       </div>
     </Layout>
   );
 };
 
-export default JobsPage;
+export default LandingPage;

@@ -36,7 +36,8 @@ const HackersFeedHottest = () => {
         <Link href={`/${headline.id}`} passHref>
         <div key={index}>
           <h3 className="font-bold">{headline.title}</h3>
-          <h4>{truncateText(headline.text, 15)}</h4>
+          <h4 className="hidden md:flex">{truncateText(headline.text, 15)}</h4>
+          <h4 className="md:hidden">{truncateText(headline.text, 50)}</h4>
           <p>By: {headline.by}</p>
           <div className="border border-2gray-500 mt-5"></div>
         </div>

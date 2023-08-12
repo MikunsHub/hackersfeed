@@ -15,15 +15,19 @@ const Latest = ({ latestNews }) => {
   return (
     <div className="w-full">
       <div className="border border-1-gray-500"></div>
-      <div className="flex flex-col gap-3 text-black text-[48px] mt-5">
+      <div className="flex p-3 flex-col gap-3 text-black text-[48px] mt-5">
+
         {latestNews.map((newsItem, index) => (
-          <div className="group-hover:bg-gray-100 group-hover:bg-opacity-20 hover:rounded-lg hover:shadow-md transition duration-300 ease-in-out">
+                <Link href={`/${newsItem.id}`} passHref>
+
+          <div>
+          <div className="p-3 hover:bg-opacity-20 hover:rounded-lg hover:shadow-md  transition duration-300 ease-in-out">
             <div className="grid grid-cols-12 mt-3 gap-5">
               <div className="col-span-4 flex flex-col gap-3" key={index}>
                 <p className="text-sm font-light text-green-500">
                   {newsItem.item_type}
                 </p>
-                <h1 className="text-2xl font-bold">{newsItem.title}</h1>
+                <h1 className=" text-xl md:text-2xl font-bold">{newsItem.title}</h1>
                 <h1 className="text-sm text-green-400 font-bold">
                   {newsItem.by}
                 </h1>
@@ -39,13 +43,18 @@ const Latest = ({ latestNews }) => {
               <div className="col-span-4">
                 <Image src={glitch} width={500} height={500} className="" />
               </div>
-            </div>
-            <Link href={`/${newsItem.id}`} passHref>
-              Read more
-            </Link>
+              </div>
 
-            <div className="border border-2gray-500 mt-5"></div>
+                
+            
+            
+
           </div>
+          <div className="border border-2gray-500 mt-5"></div>
+
+          </div>
+          </Link>
+
         ))}
       </div>
     </div>

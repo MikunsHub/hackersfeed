@@ -48,10 +48,9 @@ const Search = ({ params }) => {
 
   return (
     <Layout>
-      <div className="grid grid-cols-12 min-h-screen">
-        <section className="flex flex-col gap-5 col-span-8">
-          <div className=" grid grid-cols-12 gap-2">
-            <div className="col-span-12 ">
+      <div className="w-full p-3">
+        <section className="flex flex-col gap-5 ">
+            <div className="">
               <input
                 type="text"
                 defaultValue={params.search_query}
@@ -60,9 +59,9 @@ const Search = ({ params }) => {
                 onKeyDown={handleSearchEnter}
               />
             </div>
-            <div className="col-span-3 ">
+            <div className=" ">
               <Latest latestNews={searchResults} />
-              <div className="w-full flex justify-center items-center">
+              <div className="w-full p-3 flex justify-center items-center">
                 <button
                   className="bg-orange-500 my-5 hover:bg-green-400 text-white font-bold py-2 px-4 rounded"
                   onClick={loadMoreNews}
@@ -71,7 +70,6 @@ const Search = ({ params }) => {
                 </button>
               </div>
             </div>
-          </div>
         </section>
       </div>
     </Layout>

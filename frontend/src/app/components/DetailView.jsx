@@ -7,6 +7,7 @@ import chat_icon from "../../../public/assets/icons/chat-icon.svg";
 import arrow_icon from "../../../public/assets/icons/arrow-icon.svg";
 import reply_icon from "../../../public/assets/icons/reply-icon.svg";
 import close_icon from "../../../public/assets/icons/close-icon.svg";
+import link_icon from "../../../public/assets/icons/link-icon.svg";
 import { formatDate } from "../utilities/helpers";
 import { generateRandomBy } from "../utilities/helpers";
 
@@ -129,7 +130,7 @@ const DetailView = ({ article }) => {
   };
   return (
     <>
-      <div className="flex flex-col justify-center ">
+      <div className="flex flex-col justify-center w-full  ">
         <div>
           <p className="text-sm font-light text-green-500">
             {" "}
@@ -146,6 +147,22 @@ const DetailView = ({ article }) => {
           <h1 className="text-sm text-gray-400 font-bold">
             {formatDate(article.time)}
           </h1>
+          {article.url ? (
+            <a
+              href={article.url}
+              className="text-sm text-gray-400 font-bold flex items-center"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Link to article
+              <img
+                src={link_icon.src}
+                alt="Link Icon"
+                className="w-4 h-4 mr-1"
+              />{" "}
+              {/* Icon */}
+            </a>
+          ) : null}
         </div>
 
         <div>

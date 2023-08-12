@@ -50,8 +50,15 @@ def fetch_comment_data(comment_id):
         return {}
 
 def create_comment(comment_data, parent_comment, news_item):
+    comment_id = comment_data["id"]
+    
+    # Check if a comment with the same comment_id already exists
+    existing_comment = Comment.objects.filter(comment_id=comment_id).first()
+    if existing_comment:
+        return existing_comment  # Return the existing comment
+    
     comment = Comment(
-        comment_id=comment_data["id"],
+        comment_id=comment_id,
         news_item=news_item,
         by=comment_data.get("by") or "Anonymous",
         parent_comment=parent_comment or None,
@@ -59,10 +66,12 @@ def create_comment(comment_data, parent_comment, news_item):
         text=comment_data.get("text"),
     )
     comment.save()
-
+    
     # going down the comment thread
     if comment_data.get("kids"):
         process_comments(comment_data.get("kids"), comment, news_item)
+    
+    return comment
 
 def create_news(news_item_data):
     """

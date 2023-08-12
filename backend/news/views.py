@@ -1,12 +1,16 @@
 import random
+
+
+from django.db.models import Q
 from rest_framework import generics,status
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from news.utilities.utils import calculate_similarity
 
 from news.enums import NEWS_SOURCE
 
 from .models import Comment, NewsItem
-from .serializers import CommentSerializer, NewsItemSerializer
+from .serializers import CommentSerializer, HeadlineNewsSerializer, NewsItemSerializer, SearchNewsSerializer
 from news.tasks import fetch_and_store_hackernews_data
 from rest_framework.pagination import PageNumberPagination
 
@@ -60,7 +64,7 @@ class HackersNewsHeadlineNewsView(APIView):
         if top_10_highest_score_news:
             # Randomly select one news item from the top 10 list
             selected_news_item = random.choice(top_10_highest_score_news)
-            serializer = NewsItemSerializer(selected_news_item)
+            serializer = HeadlineNewsSerializer(selected_news_item)
             return Response(serializer.data)
         else:
             return Response({"message": "No news items found."}, status=404)
@@ -71,12 +75,11 @@ class HackersFeedHeadlineNewsView(APIView):
         # Get the most recent NewsItem
         most_recent_news = (
             NewsItem.objects.filter(news_source=NEWS_SOURCE.HACKERS_FEED)
-            .order_by("-time")
-            .first()
+            .order_by("-time")[:4]
         )
 
         if most_recent_news:
-            serializer = NewsItemSerializer(most_recent_news)
+            serializer = HeadlineNewsSerializer(most_recent_news, many=True)
             return Response(serializer.data)
         else:
             return Response({"message": "No news items found."}, status=404)
@@ -114,3 +117,24 @@ class CommentCreateView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class NewsItemSearchView(APIView):
+    def get(self, request):
+        query = request.query_params.get("query", "")
+
+        if query:
+            matching_news_items = NewsItem.objects.filter(
+                Q(title__icontains=query) | Q(text__icontains=query) | Q(by__icontains=query)
+            )
+
+            matching_news_items = sorted(matching_news_items, key=lambda item: calculate_similarity(item.title, query), reverse=True)
+
+            # Initialize the pagination class
+            paginator = LatestNewsPagination()
+            paginated_news_items = paginator.paginate_queryset(matching_news_items, request)
+
+
+            serializer = SearchNewsSerializer(paginated_news_items, many=True)
+            return paginator.get_paginated_response(serializer.data)
+        else:
+            return Response({"message": "No query provided."}, status=status.HTTP_400_BAD_REQUEST)

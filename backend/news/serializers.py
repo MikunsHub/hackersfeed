@@ -31,3 +31,17 @@ class NewsItemSerializer(serializers.ModelSerializer):
             serialized_comments.append(serialized_comment)
         return serialized_comments
     
+
+class HeadlineNewsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = NewsItem
+        fields = "__all__"
+    
+
+class SearchNewsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = NewsItem
+        fields = "__all__"
+    

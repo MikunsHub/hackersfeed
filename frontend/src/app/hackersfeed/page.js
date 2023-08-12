@@ -1,15 +1,15 @@
 "use client";
 
-import HeadLine from "./components/HeadLine";
-import HackersFeedHottest from "./components/HackersFeedHottest";
+import HeadLine from "../components/HeadLine";
+import HackersFeedHottest from "../components/HackersFeedHottest";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Layout } from "./components/Layout";
+import { Layout } from "../components/Layout";
 import Link from "next/link";
-import Latest from "./components/Latest";
-import { generateRandomBy } from "./utilities/helpers";
+import Latest from "../components/Latest";
+import { generateRandomBy } from "../utilities/helpers"; 
 
-const LandingPage = () => {
+const JobsPage = () => {
   const [latestNews, setLatestNews] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [newStoryText, setNewStoryText] = useState(""); // State for new story text
@@ -20,7 +20,7 @@ const LandingPage = () => {
     // Increment the current page number and make API call for next page
     const nextPage = currentPage + 1;
     axios
-      .get(`http://127.0.0.1:8000/api/news/latest-news/?page=${nextPage}`)
+      .get(`http://127.0.0.1:8000/api/news/latest-news/?news_source=HF&page=${nextPage}`)
       .then((response) => {
         // Concatenate the new news items to the existing list
         setLatestNews((prevNews) => [...prevNews, ...response.data.results]);
@@ -66,7 +66,7 @@ const LandingPage = () => {
   useEffect(() => {
     // Make the API call when the component mounts
     axios
-      .get("http://127.0.0.1:8000/api/news/latest-news")
+      .get("http://127.0.0.1:8000/api/news/latest-news/?news_source=HF")
       .then((response) => {
         // console.log(response.data.results);
         setLatestNews(response.data.results); // Assuming the API returns an array of news items
@@ -89,7 +89,7 @@ const LandingPage = () => {
             </div>
           </div>
 
-          <div className="my-9 hover:bg-gray-200">
+          <div className="my-9">
             <Latest latestNews={latestNews} />
             <div className="w-full flex justify-center items-center">
               <button
@@ -135,4 +135,4 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+export default JobsPage;

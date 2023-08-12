@@ -1,9 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Link from "next/link";
 
 const HackersFeedHottest = () => {
-  const [headline_hf, setHeadlineHf] = useState([]);
+  const [headlineHf, setHeadlineHf] = useState([]);
   const truncateText = (text, maxLength) => {
     if (text && text.length > maxLength) {
       return text.slice(0, maxLength) + "...";
@@ -23,32 +24,24 @@ const HackersFeedHottest = () => {
         console.error("Error fetching latest news:", error);
       });
   }, []);
+
   return (
     <div>
-      <h2 className="font-bold text-2xl text-orange-500">HackersFeed Hottest</h2>
-
-      <div className="border border-2gray-500 mt-5"></div>
-      <h3 className="font-bold">{headline_hf.title}</h3>
-      <h4>{truncateText(headline_hf.text,15)}</h4>
-      <p>By: {headline_hf.by}</p>
+      <h2 className="font-bold text-2xl text-orange-500">
+        HackersFeed Hottest
+      </h2>
       <div className="border border-2gray-500 mt-5"></div>
 
-
-      <h3 className="font-bold">{headline_hf.title}</h3>
-      <h4>{truncateText(headline_hf.text,15)}</h4>
-      <p>By: {headline_hf.by}</p>
-      <div className="border border-2gray-500 mt-5"></div>
-
-      <h3 className="font-bold">{headline_hf.title}</h3>
-      <h4>{truncateText(headline_hf.text,15)}</h4>
-      <p>By: {headline_hf.by}</p>
-      <div className="border border-2gray-500 mt-5"></div>
-
-      <h3 className="font-bold">{headline_hf.title}</h3>
-      <h4>{truncateText(headline_hf.text,15)}</h4>
-      <p>By: {headline_hf.by}</p>
-      <div className="border border-2gray-500 mt-5"></div>
-
+      {headlineHf.map((headline, index) => (
+        <Link href={`/${headline.id}`} passHref>
+        <div key={index}>
+          <h3 className="font-bold">{headline.title}</h3>
+          <h4>{truncateText(headline.text, 15)}</h4>
+          <p>By: {headline.by}</p>
+          <div className="border border-2gray-500 mt-5"></div>
+        </div>
+        </Link>
+      ))}
     </div>
   );
 };

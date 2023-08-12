@@ -1,6 +1,8 @@
+import difflib
+import datetime
+
 import requests
 from concurrent.futures import ThreadPoolExecutor
-import datetime
 from django.utils import timezone
 from decouple import config
 from news.enums import NEWS_SOURCE
@@ -81,3 +83,9 @@ def create_news(news_item_data):
     news_item.save()
     return news_item
 
+def calculate_similarity(item_title, query):
+
+    sequence_matcher = difflib.SequenceMatcher(None, item_title, query)
+    similarity_score = sequence_matcher.ratio()
+
+    return similarity_score

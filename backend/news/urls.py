@@ -10,4 +10,5 @@ urlpatterns = [
     path("<int:pk>", views.DetailNewsView.as_view()),
     path("create/", views.NewsItemCreateView.as_view()),
     path("<int:news_item_id>/comments/", views.CommentCreateView.as_view()),
+    path('search/', views.NewsItemSearchView.as_view())
 ]

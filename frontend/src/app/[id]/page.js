@@ -5,21 +5,19 @@ import { Layout } from "../components/Layout";
 import HeadLine from "../components/HeadLine";
 import HackersFeedHottest from "../components/HackersFeedHottest";
 import DetailView from "../components/DetailView";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
-const Article = () => {
+const Article = ({ params }) => {
   const [article, setArticle] = useState(null);
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const id = searchParams.get("id");
-  console.log("id=", id);
 
   useEffect(() => {
     // Get the 'id' from the query string
     // const { id } = router.query;
     // console.log(router.query);
-    const id = 37086982;
+    const id = params.id;
+    console.log("id=", id);
 
     if (id) {
       axios
@@ -37,14 +35,14 @@ const Article = () => {
     <Layout>
       <div className="grid grid-cols-12 min-h-screen">
         <section className="flex flex-col gap-5 col-span-8">
-          <div className=" grid grid-cols-12 gap-2">
+          {/* <div className=" grid grid-cols-12 gap-2">
             <div className="col-span-9 ">
               <HeadLine />
             </div>
             <div className="col-span-3 ">
               <HackersFeedHottest />
             </div>
-          </div>
+          </div> */}
 
           <div className="my-9">
             {article ? (

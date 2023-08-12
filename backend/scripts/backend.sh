@@ -60,13 +60,13 @@ if [ -z "$SECRET_KEY" ]; then
     read SECRET_KEY
 fi
 
-echo "SECRET_KEY=\"$SECRET_KEY\"" > /.env
-echo "DB_NAME=\"$DB_NAME\"" >> /.env
-echo "DB_USER=\"$DB_USER\"" >> /.env
-echo "DB_PASSWORD=\"$DB_PASSWORD\"" >> /.env
-echo "DB_HOST=\"$DB_HOST\"" >> /.env
-echo "DB_PORT=\"$DB_PORT\"" >> /.env
-echo "ENVIRONMENT=LOCAL" >> .env
+echo "SECRET_KEY=\"$SECRET_KEY\"" > /.env.dev
+echo "DB_NAME=\"$DB_NAME\"" >> /.env.dev
+echo "DB_USER=\"$DB_USER\"" >> /.env.dev
+echo "DB_PASSWORD=\"$DB_PASSWORD\"" >> /.env.dev
+echo "DB_HOST=\"$DB_HOST\"" >> /.env.dev
+echo "DB_PORT=\"$DB_PORT\"" >> /.env.dev
+echo "ENVIRONMENT=LOCAL" >> .env.dev
 echo "BASE_URL=https://hacker-news.firebaseio.com/v0/" >> .env
 
 

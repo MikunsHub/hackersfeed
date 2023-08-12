@@ -1,5 +1,6 @@
 node_modules
 backend/news/migrations
+backend/.env.dev
 backend/accounts/migrations
 __pycache__
 settings.ini

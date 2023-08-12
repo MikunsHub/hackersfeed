@@ -31,7 +31,7 @@ const App = () => {
       setIsLoading(true);
 
       const requestData = {
-        item_type: "story",
+        item_type: selectedOption, // Use selectedOption here
         by: generateRandomBy(),
         text: newStoryText,
         title: newStoryTitle,
@@ -45,7 +45,6 @@ const App = () => {
 
         console.log("Story created:", response.data);
 
-        // Reset form fields after successful submission
         setNewStoryText("");
         setNewStoryTitle("");
         router.push("/");

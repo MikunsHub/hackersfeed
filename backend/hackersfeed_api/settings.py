@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-mx$*z$$kr(dkjo(4)bk#tve41w6z*!i0s2q91s1j&*oam^+(ev
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost","127.0.0.1"]
 
 
 # Application definition
@@ -165,8 +165,8 @@ REST_FRAMEWORK = {
 }
 
 # Celery settings
-CELERY_BROKER_URL = "redis://localhost:6379"
-CELERY_RESULT_BACKEND = "redis://localhost:6379"
+CELERY_BROKER_URL = config("CELERY_BROKER_URL")
+CELERY_RESULT_BACKEND = config("CELERY_RESULT_BACKEND")
 CELERY_ACCEPT_CONTENT = ["application/json"]
 CELERY_TASK_SERIALIZER = "json"
 CELERY_RESULT_SERIALIZER = "json"
@@ -175,6 +175,6 @@ CELERY_TIMEZONE = "UTC"
 CELERY_BEAT_SCHEDULE = {
     "get_data": {
         "task": "news.tasks.fetch_and_store_hackernews_data",  # The task's module path
-        "schedule": 10,  # 5 minutes in seconds
+        "schedule": 300,  # 5 minutes in seconds
     },
 }

@@ -11,7 +11,6 @@ from news.enums import NEWS_SOURCE
 
 from .models import Comment, NewsItem
 from .serializers import CommentSerializer, HeadlineNewsSerializer, NewsItemSerializer, SearchNewsSerializer
-from news.tasks import fetch_and_store_hackernews_data
 from rest_framework.pagination import PageNumberPagination
 
 
@@ -25,7 +24,6 @@ class LatestNewsPagination(PageNumberPagination):
 # Create your views here.
 class SanityCheck(APIView):
     def get(self, request, *args, **kwargs):
-        fetch_and_store_hackernews_data()
         return Response({"message": "I am sane"})
 
 

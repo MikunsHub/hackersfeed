@@ -13,11 +13,7 @@ const Article = ({ params }) => {
   const router = useRouter();
 
   useEffect(() => {
-    // Get the 'id' from the query string
-    // const { id } = router.query;
-    // console.log(router.query);
     const id = params.id;
-    console.log("id=", id);
 
     if (id) {
       axios

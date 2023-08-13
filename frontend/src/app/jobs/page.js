@@ -68,8 +68,8 @@ const LandingPage = () => {
     axios
       .get("http://127.0.0.1:8000/api/news/latest-news/?item_type=job")
       .then((response) => {
-        // console.log(response.data.results);
-        setLatestNews(response.data.results); // Assuming the API returns an array of news items
+
+        setLatestNews(response.data.results); 
       })
       .catch((error) => {
         console.error("Error fetching latest news:", error);

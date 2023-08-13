@@ -37,11 +37,10 @@ const SideBar = ({ latestNews }) => {
   };
 
   console.log(latestNews);
-  // console.log(latestNews[0].text)
+
   return (
     <div>
     <div className="md:w-full pr-20 w-full h-full">
-      {/* {latestNews[0]} */}
       <div className="logo p-5 hidden md:flex">
         <a href="/" onClick={handleLogoClick}>
           <Image

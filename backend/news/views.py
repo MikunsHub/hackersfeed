@@ -26,7 +26,9 @@ class SanityCheck(APIView):
     def get(self, request, *args, **kwargs):
         return Response({"message": "I am sane"})
 
-
+# @desc Get latest news
+# @route GET /api/news/latest-news/
+# @access Public
 class LatestNewsListView(generics.ListAPIView):
     queryset = NewsItem.objects.all().order_by("-time")
     serializer_class = NewsItemSerializer
@@ -47,11 +49,18 @@ class LatestNewsListView(generics.ListAPIView):
         return queryset
 
 
+# @desc Get news details
+# @route GET /api/news/<int:pk>/
+# @access Public
 class DetailNewsView(generics.RetrieveAPIView):
     queryset = NewsItem.objects.all()
     serializer_class = NewsItemSerializer
 
 
+
+# @desc Get news headlines
+# @route GET /api/news/headline/
+# @access Public
 class HackersNewsHeadlineNewsView(APIView):
     def get(self, request):
         # Get the top 10 highest scored NewsItems
@@ -65,9 +74,11 @@ class HackersNewsHeadlineNewsView(APIView):
             serializer = HeadlineNewsSerializer(selected_news_item)
             return Response(serializer.data)
         else:
-            return Response({"message": "No news items found."}, status=404)
+            return Response({"message": "No news items found."}, status=status.HTTP_404_NOT_FOUND)
 
-
+# @desc Get news hackersfeed headlines
+# @route GET /api/news/headline/hf
+# @access Public
 class HackersFeedHeadlineNewsView(APIView):
     def get(self, request):
         # Get the most recent NewsItem
@@ -80,10 +91,12 @@ class HackersFeedHeadlineNewsView(APIView):
             serializer = HeadlineNewsSerializer(most_recent_news, many=True)
             return Response(serializer.data)
         else:
-            return Response({"message": "No news items found."}, status=404)
+            return Response({"message": "No news items found."}, status=status.HTTP_404_NOT_FOUND)
 
 
-
+# @desc Add news on hackersfeed
+# @route POST /api/news/create/
+# @access Public
 class NewsItemCreateView(APIView):
     def post(self, request, *args, **kwargs):
         data = request.data
@@ -95,6 +108,10 @@ class NewsItemCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 
+
+# @desc Make comment
+# @route POST /api/news/<int:news_item_id>/comments/
+# @access Public
 class CommentCreateView(APIView):
     def post(self, request, *args, **kwargs):
         news_id = kwargs["news_item_id"]
@@ -116,6 +133,10 @@ class CommentCreateView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+
+# @desc Search for news item
+# @route GET /api/news/search/
+# @access Public
 class NewsItemSearchView(APIView):
     def get(self, request):
         query = request.query_params.get("query", "")

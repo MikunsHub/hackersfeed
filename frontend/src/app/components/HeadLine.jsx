@@ -10,11 +10,10 @@ const HeadLine = () => {
   const [headline, setHeadline] = useState([]);
 
   useEffect(() => {
-    // Make the API call when the component mounts
+    // API call when the component mounts
     axios
       .get("http://127.0.0.1:8000/api/news/headline/")
       .then((response) => {
-        // console.log(response.data);
         setHeadline(response.data); // Assuming the API returns an array of news items
       })
       .catch((error) => {

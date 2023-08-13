@@ -87,7 +87,6 @@ const renderComments = (
 };
 
 const DetailView = ({ article }) => {
-  console.log("article=", article);
   const hasComments = article.comments && article.comments.length > 0;
   const [activeReplyCommentId, setActiveReplyCommentId] = useState(null);
 
@@ -118,8 +117,7 @@ const DetailView = ({ article }) => {
       );
 
       if (response.ok) {
-        // Comment posted successfully, refresh the page or update comments data
-        // You might need to handle this based on your application's flow
+
         console.log("Comment posted successfully");
       } else {
         console.error("Error posting comment");
@@ -143,7 +141,6 @@ const DetailView = ({ article }) => {
 
         <div className="flex gap-5 my-5">
           <div className="text-sm  font-bold">{article.by}</div>
-          {/* <div className="text-sm  font-light">@authors mail</div> */}
           <h1 className="text-sm text-gray-400 font-bold">
             {formatDate(article.time)}
           </h1>

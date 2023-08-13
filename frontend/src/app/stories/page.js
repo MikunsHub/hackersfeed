@@ -5,22 +5,23 @@ import HackersFeedHottest from "../components/HackersFeedHottest";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Layout } from "../components/Layout";
-import Link from "next/link";
 import Latest from "../components/Latest";
-import Modal from "../components/Modal"
+import Modal from "../components/Modal";
 import { generateRandomBy } from "../utilities/helpers";
 
 const LandingPage = () => {
   const [latestNews, setLatestNews] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  
+
   const [isLoading, setIsLoading] = useState(false);
 
   const loadMoreNews = () => {
     // Increment the current page number and make API call for next page
     const nextPage = currentPage + 1;
     axios
-      .get(`http://127.0.0.1:8000/api/news/latest-news/?item_type=story&page=${nextPage}`)
+      .get(
+        `http://127.0.0.1:8000/api/news/latest-news/?item_type=story&page=${nextPage}`
+      )
       .then((response) => {
         // Concatenate the new news items to the existing list
         setLatestNews((prevNews) => [...prevNews, ...response.data.results]);
@@ -68,7 +69,6 @@ const LandingPage = () => {
     axios
       .get("http://127.0.0.1:8000/api/news/latest-news/?item_type=story")
       .then((response) => {
-        // console.log(response.data.results);
         setLatestNews(response.data.results); // Assuming the API returns an array of news items
       })
       .catch((error) => {
@@ -85,15 +85,13 @@ const LandingPage = () => {
               <HeadLine />
             </div>
             <div className=" md:hidden mx-3 flex justify-center items-center">
-          <Modal/>
-        </div>
+              <Modal />
+            </div>
 
             <div className="col-span-3 ">
               <HackersFeedHottest />
             </div>
           </div>
-
-         
 
           <div className="my-9">
             <Latest latestNews={latestNews} />
@@ -109,7 +107,7 @@ const LandingPage = () => {
         </section>
         {/* third col */}
         <div className=" hidden md:flex col-span-3 mx-3">
-          <Modal/>
+          <Modal />
         </div>
       </div>
     </Layout>

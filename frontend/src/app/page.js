@@ -5,7 +5,6 @@ import HackersFeedHottest from "./components/HackersFeedHottest";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Layout } from "./components/Layout";
-import Link from "next/link";
 import Latest from "./components/Latest";
 import Modal from "./components/Modal";
 import { generateRandomBy } from "./utilities/helpers";
@@ -22,7 +21,7 @@ const LandingPage = () => {
     axios
       .get(`http://127.0.0.1:8000/api/news/latest-news/?page=${nextPage}`)
       .then((response) => {
-        // Concatenate the new news items to the existing list
+        // Concatenate the new newsitems to the existing list
         setLatestNews((prevNews) => [...prevNews, ...response.data.results]);
         setCurrentPage(nextPage); // Update the current page number
       })
@@ -50,7 +49,6 @@ const LandingPage = () => {
           requestData
         );
 
-        console.log("Story created:", response.data);
 
         // Reset form fields after successful submission
         setNewStoryText("");
@@ -64,12 +62,12 @@ const LandingPage = () => {
   };
 
   useEffect(() => {
-    // Make the API call when the component mounts
+    // API call when the component mounts
     axios
       .get("http://127.0.0.1:8000/api/news/latest-news")
       .then((response) => {
-        // console.log(response.data.results);
-        setLatestNews(response.data.results); // Assuming the API returns an array of news items
+
+        setLatestNews(response.data.results); 
       })
       .catch((error) => {
         console.error("Error fetching latest news:", error);

@@ -22,7 +22,7 @@ const LandingPage = () => {
     axios
       .get(`http://127.0.0.1:8000/api/news/latest-news/?news_source=HF&page=${nextPage}`)
       .then((response) => {
-        // Concatenate the new news items to the existing list
+        // Concatenate the new newsitems to the existing list
         setLatestNews((prevNews) => [...prevNews, ...response.data.results]);
         setCurrentPage(nextPage); // Update the current page number
       })
@@ -50,9 +50,9 @@ const LandingPage = () => {
           requestData
         );
 
-        console.log("Story created:", response.data);
 
-        // Reset form fields after successful submission
+
+
         setNewStoryText("");
         setNewStoryTitle("");
       } catch (error) {
@@ -68,8 +68,7 @@ const LandingPage = () => {
     axios
       .get("http://127.0.0.1:8000/api/news/latest-news/?news_source=HF")
       .then((response) => {
-        // console.log(response.data.results);
-        setLatestNews(response.data.results); // Assuming the API returns an array of news items
+        setLatestNews(response.data.results); 
       })
       .catch((error) => {
         console.error("Error fetching latest news:", error);

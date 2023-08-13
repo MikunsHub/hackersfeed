@@ -1,8 +1,17 @@
 ---
 
-## Getting Started
+# HackersFeed Backend Setup
 
-To run the project locally, follow these steps:
+This guide will walk you through the process of setting up and running the backend of the HackersFeed project.
+
+
+## Prerequisites
+Before you start, make sure you have the following software installed:
+
+- [Python 3.9.6](https://www.python.org/downloads/release/python-396/)
+- [PostgreSQL](https://www.postgresql.org/download/)
+- [Redis](https://redis.io/download)
+
 
 1. Clone the repository to your local machine:
 
@@ -13,70 +22,34 @@ To run the project locally, follow these steps:
 
 2. Make sure you have Python 3.9.6 installed on your machine.
 
-3. Install PostgreSQL and Redis:
+3. Install PostgreSQL and Redis: Install these prerequisites using the provided `setup_dependencies.sh` script if you are on a Mac.
 
-   - **PostgreSQL**: Install PostgreSQL on your machine and configure it with the necessary credentials. You can download it from the [official PostgreSQL website](https://www.postgresql.org/download/).
 
-   - **Redis**: Install and start the Redis server on your machine. You can download it from the [official Redis website](https://redis.io/download).
 
-4. Set up environment variables:
+4. Run backend.sh :
 
-   - Copy the `.env.dev.sample` file to `.env.dev`:
-
-     ```bash
-     cp backend/.env.dev.sample backend/.env.dev
-     ```
-
-   - Open the `.env.dev` file and set the appropriate values for database and other configurations.
-
-5. Open the terminal and navigate to the `backend/scripts` directory:
+```bash
+cd scripts
+chmod +x backend.sh
+./backend.sh
+```
+5. Run Celery workers and beat:
 
    ```bash
-   cd backend/scripts
+   python -m celery -A hackersfeed_api worker & python -m celery -A hackersfeed_api beat
    ```
 
-6. Run the `backend.sh` script to set up the project:
+   This will start Celery workers and beat for background tasks.
 
-   ```bash
-   ./backend.sh
-   ```
-
-   This script does the initial project setup, including database migration and virtual environment creation.
-
-7. Start the Redis server:
+6. To start the redis server manually:
 
    ```bash
    redis-server
    ```
 
-8. In a new terminal window, activate the virtual environment:
-
+To run the tests:
    ```bash
-   source venv/bin/activate
+      python manage.py tests
    ```
-
-9. Run Celery workers and beat:
-
-   ```bash
-   python manage.py celery worker --detach
-   python manage.py celery beat --detach
-   ```
-
-   This will start Celery workers and beat for background tasks.
-
-10. Access the application by opening your web browser and navigating to `http://localhost:8000`.
-
-## Project Structure
-
-...
-
-## Contributing
-
-...
-
-## Contact
-
-...
 
 Happy hacking!
-

@@ -31,7 +31,7 @@ const App = () => {
       setIsLoading(true);
 
       const requestData = {
-        item_type: selectedOption, // Use selectedOption here
+        item_type: selectedOption,
         by: generateRandomBy(),
         text: newStoryText,
         title: newStoryTitle,
@@ -42,8 +42,6 @@ const App = () => {
           "http://127.0.0.1:8000/api/news/create/",
           requestData
         );
-
-        console.log("Story created:", response.data);
 
         setNewStoryText("");
         setNewStoryTitle("");
@@ -77,7 +75,12 @@ const App = () => {
         <div className="  h-[100vh] grid place-content-center">
           <div className="lg:w-[600px] bg-white pb-9 px-5 shadow-md border border-2-black rounded-sm">
             <div className="flex justify-end mt-2 mb-9">
-                <img onClick={closeModal} src={close_icon.src} alt="close" className="w-6 h-6 mt-1 cursor-pointer"/>
+              <img
+                onClick={closeModal}
+                src={close_icon.src}
+                alt="close"
+                className="w-6 h-6 mt-1 cursor-pointer"
+              />
             </div>
             <form
               className="flex  flex-col space-y-4"

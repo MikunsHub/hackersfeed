@@ -17,8 +17,7 @@ const HackersFeedHottest = () => {
     axios
       .get("http://127.0.0.1:8000/api/news/headline/hf")
       .then((response) => {
-        // console.log(response.data);
-        setHeadlineHf(response.data); // Assuming the API returns an array of news items
+        setHeadlineHf(response.data); 
       })
       .catch((error) => {
         console.error("Error fetching latest news:", error);

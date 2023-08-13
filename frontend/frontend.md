@@ -1,34 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# HackersFeed Frontend Setup
 
-## Getting Started
+This guide will help you set up the frontend of the HackersFeed project.
 
-First, run the development server:
+## Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+Before you start, make sure you have [Node.js](https://nodejs.org/) installed on your machine.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Installation
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+1. Clone the repository and navigate to the frontend directory:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+   ```bash
+   cd frontend
+   ```
 
-## Learn More
+## Preview
+Below is a preview of how the HackersFeed web app looks:
 
-To learn more about Next.js, take a look at the following resources:
+![Alt text](/docs-assets/image.png)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+News Detail
+![Alt text](/docs-assets/image-2.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Search page
+![Alt text](/docs-assets/image-1.png)
 
-## Deploy on Vercel
+## Troubleshooting
+If you encounter any issues during the setup process or while running the frontend, feel free to reach out for assistance.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Happy Hacking!!

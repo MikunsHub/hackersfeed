@@ -61,15 +61,15 @@ if [ -z "$SECRET_KEY" ]; then
     read SECRET_KEY
 fi
 
-echo "SECRET_KEY=\"$SECRET_KEY\"" > /.env.dev
-echo "DB_NAME=\"$DB_NAME\"" >> /.env.dev
-echo "DB_USER=\"$DB_USER\"" >> /.env.dev
-echo "DB_PASSWORD=\"$DB_PASSWORD\"" >> /.env.dev
-echo "DB_HOST=\"$DB_HOST\"" >> /.env.dev
-echo "DB_PORT=\"$DB_PORT\"" >> /.env.dev
-echo "ENVIRONMENT=LOCAL" >> .env.dev
-echo "BASE_URL=https://hacker-news.firebaseio.com/v0/" >> .env
-
+echo "[settings]" > settings.ini
+echo "SECRET_KEY = \"$SECRET_KEY\"" >> settings.ini
+echo "DB_NAME = \"$DB_NAME\"" >> settings.ini
+echo "DB_USER = \"$DB_USER\"" >> settings.ini
+echo "DB_PASSWORD = \"$DB_PASSWORD\"" >> settings.ini
+echo "DB_HOST = \"$DB_HOST\"" >> settings.ini
+echo "DB_PORT = \"$DB_PORT\"" >> settings.ini
+echo "ENVIRONMENT = LOCAL" >> settings.ini
+echo "BASE_URL = https://hacker-news.firebaseio.com/v0/" >> settings.ini
 
 
 

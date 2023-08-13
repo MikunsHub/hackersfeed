@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# ONLY RUN THIS SCRIPT FOR INITIAL SETUP
+# ONLY RUN THIS SCRIPT FOR INITIAL SETUP ON BARE METAL
 
 echo "This script assumes you have python 3.9.6 installed"
+echo "This script also gives an alternative to run the project bare metal instead of using docker"
 
 pip install virtualenv
 clear
